@@ -1,0 +1,20 @@
+service: myserverlessproject
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: salim
+plugins:
+  - serverless-s3-sync
+custom:
+  s3Sync:
+   - bucketName: salimbucket
+     localDir: UploadData
+functions:
+  hello:
+    handler: handler.hello
+resources: 
+    Resources:
+       DemoBucketUpload:
+            Type: AWS::S3::Bucket
+            Properties:
+                BucketName: salimbucket
